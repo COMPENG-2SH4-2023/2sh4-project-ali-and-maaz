@@ -1,10 +1,11 @@
 #include "Player.h"
 
 
-Player::Player(GameMechs* thisGMRef)
+Player::Player(GameMechs* thisGMRef, Food* foodREF)
 {
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
+
 
     // more actions to be included
 }
@@ -27,6 +28,7 @@ void Player::updatePlayerDir()
 
 void Player::movePlayer()
 {
+    
     // PPA3 Finite State Machine logic
 }
 
