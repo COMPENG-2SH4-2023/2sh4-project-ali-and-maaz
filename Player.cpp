@@ -6,6 +6,7 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
+
     // more actions to be included
     objPos temPos;
     temPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2,
@@ -74,6 +75,7 @@ void Player::updatePlayerDir()
 
 void Player::movePlayer()
 {
+    
     // PPA3 Finite State Machine logic
     objPos currHead;  // holding the pos information of the current head
     playerPosList.getHeadElement(currHead);
