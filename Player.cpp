@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(GameMechs* thisGMRef, Food* foodREF)
+Player::Player(GameMechs* thisGMRef)
 {
     mainGameMechsRef = thisGMRef;
     myDir = STOP;

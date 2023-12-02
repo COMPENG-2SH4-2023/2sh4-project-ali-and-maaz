@@ -17,7 +17,7 @@ class Food
 
     private:
         objPos foodPos;
-        objPosArrayList* foodbucket = new objPosArrayList;
+
         int X_range = 24;
         int Y_range= 11;
     public:
