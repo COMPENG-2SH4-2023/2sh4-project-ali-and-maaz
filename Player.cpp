@@ -15,7 +15,7 @@ Player::Player(GameMechs* thisGMRef)
 
     //no heap member yet - never used new keyboard
     playerPosList = new objPosArrayList();
-    playerPosList.insertHead(temPos);
+    playerPosList->insertHead(temPos);
 }
 
 
@@ -78,7 +78,7 @@ void Player::movePlayer()
     
     // PPA3 Finite State Machine logic
     objPos currHead;  // holding the pos information of the current head
-    playerPosList.getHeadElement(currHead);
+    playerPosList->getHeadElement(currHead);
 
 
 
