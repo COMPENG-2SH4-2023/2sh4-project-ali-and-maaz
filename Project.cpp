@@ -151,7 +151,7 @@ void CleanUp(void)
 {
     MacUILib_clearScreen();    
     if (GM_PTR->getLoseFlagStatus() == true){
-        MacUILib_printf("Your Lose the Game, Total Points: %d \n\n", GM_PTR->getScore() );
+        MacUILib_printf("You Lose the Game, Total Points: %d \n\n", GM_PTR->getScore() );
     }
 
     MacUILib_uninit();
