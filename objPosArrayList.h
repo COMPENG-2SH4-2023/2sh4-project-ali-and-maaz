@@ -1,4 +1,4 @@
-#ifndef OBJPOS_ARRAYLIST_H
+#ifndef OBJPOS_ARRAYLIST_H //headerguard
 #define OBJPOS_ARRAYLIST_H
 
 #define ARRAY_MAX_CAP 200
@@ -9,8 +9,8 @@ class objPosArrayList
 {
     private:
         objPos* aList;
-        int sizeList;
-        int sizeArray;
+        int listSize;
+        int ArrayCapacity;
 
     public:
         objPosArrayList();

@@ -1,10 +1,6 @@
 #include "MacUILib.h"
-<<<<<<< HEAD
-// #include <unistd.h>
-=======
 #include <unistd.h>
 
->>>>>>> 3b6a4eab028c8402cdf900e2990b5a21a704e15e
 print_ptr MacUILib_printf;
 
 #ifdef WINDOWS

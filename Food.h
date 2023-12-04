@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 #include <time.h>
-
+#include "GameMechs.h"
 #include "objPos.h"
 #include "objPosArrayList.h"
 
@@ -17,16 +17,15 @@ class Food
 
     private:
         objPos foodPos;
-
+        GameMechs* gmref;
         int X_range = 24;
         int Y_range= 11;
     public:
-        Food();
-        ~Food(
-            
-        );
+        Food(GameMechs* GMRef);
+        ~Food();
 
-        void generateFood(objPos blockOff);
+        void generateFood(objPosArrayList* blockOff); //upgrade to something like this prolly Player(GameMechs* thisGMRef)
+        // So it takes in every body part location as a block off  
         void getFoodPos(objPos &returnPos);
         
 
