@@ -158,5 +158,6 @@ void CleanUp(void)
     MacUILib_uninit();
     delete GM_PTR;
     delete foodgen;
+    delete myPlayer;
 }
 
