@@ -11,7 +11,7 @@ using namespace std;
 
 #define DELAY_CONST 100000
 
-objPos myPos;
+// Declare pointers for game objects
 Food* foodgen;
 GameMechs* GM_PTR;
 Player* myPlayer;
@@ -49,15 +49,13 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
+    // Create game objects
     GM_PTR = new GameMechs(26,13);
     foodgen = new Food(GM_PTR);
     myPlayer = new Player(GM_PTR, foodgen);
     
-    // this a makeshift setup so I don't have to touch generateItem yet.
-
+    // Initialize the player's initial position and making sure the food generated is not the same as the position of the snake
     objPosArrayList* playerPosList = myPlayer->getPlayerPos();
-    objPos random;
-
     foodgen->generateFood(playerPosList);
 
 
@@ -67,22 +65,23 @@ void Initialize(void)
 void GetInput(void)
 {
    GM_PTR->getInput();
-
+    
+    // Check for the ESC key to exit the game
    if (GM_PTR->getInput() == 27)
-            GM_PTR->setExitTrue();
-            objPos playertest;
-   
-
+        GM_PTR->setExitTrue();
 
 
 }
 
 void RunLogic(void)
 {
+    // Update player direction and move the player
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
-
+    // Clear input for the next frame so no double input
     GM_PTR->clearInput();
+
+    
 
     
 }
@@ -98,14 +97,14 @@ void DrawScreen(void)
 
     objPos tempFoodPos;
     foodgen->getFoodPos(tempFoodPos);
-
+    // Iterate through each position on the game board
     for(int i = 0; i < GM_PTR->getBoardSizeY(); i++)
     {
         for(int j = 0; j < GM_PTR->getBoardSizeX(); j++)
         {
             drawn = false;
 
-            // iterate through every element in thelist
+            // Check if the current position is part of the player's body
             for(int k = 0; k < playerBody->getSize(); k++)
             {
                 playerBody->getElement(tempBody, k);
@@ -118,8 +117,10 @@ void DrawScreen(void)
                 }
             }
 
-            if(drawn) continue; // if player body was drawn, don't draw anything below.
-
+            // if player body was drawn, don't draw anything below.
+            if(drawn) continue; 
+            
+            // Draw walls, food, or empty space
             if (i == 0 || i == GM_PTR -> getBoardSizeY() - 1 || j == 0 || j == GM_PTR -> getBoardSizeX() - 1)
             {
                 MacUILib_printf("%c", '#');
@@ -135,15 +136,10 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
+    // Display the player's score
     MacUILib_printf("Score: %d\n", GM_PTR->getScore());
-    MacUILib_printf("Player Postion: \n");
-    for (int x = 0; x < playerBody->getSize(); x++){
-        playerBody->getElement(tempBody, x);
-        MacUILib_printf("<%d. %d> ", tempBody.x, tempBody.y);
-    }
-    
-    
-    MacUILib_printf(" \nFood Pos: <%d, %d>\n",tempFoodPos.x, tempFoodPos.y);
+    // Display "Game Over" if the player has lost
+   
     }
 void LoopDelay(void)
 {
@@ -154,10 +150,15 @@ void LoopDelay(void)
 void CleanUp(void)
 {
     MacUILib_clearScreen();    
-  
+    if (GM_PTR->getLoseFlagStatus() == true){
+        MacUILib_printf("You Lose the Game, Total Points: %d \n\n", GM_PTR->getScore() );
+    }
+
     MacUILib_uninit();
-    delete GM_PTR;
+    
+    // Delete dynamically allocated objects
     delete foodgen;
+    delete GM_PTR;
     delete myPlayer;
 }
 

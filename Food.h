@@ -24,8 +24,7 @@ class Food
         Food(GameMechs* GMRef);
         ~Food();
 
-        void generateFood(objPosArrayList* blockOff); //upgrade to something like this prolly Player(GameMechs* thisGMRef)
-        // So it takes in every body part location as a block off  
+        void generateFood(objPosArrayList* blockOff); 
         void getFoodPos(objPos &returnPos);
         
 
